@@ -76,10 +76,12 @@ def get_exercises_ajax():
     
     severity = severity_map.get(severity_int)
 
+    # Get the exercises based on selected body part and severity
     exercises = get_exercises(body_part, severity)
 
+    # Format exercises to include body part and severity
     exercises_data = [
-        {'exercise': ex['exercise'], 'description': ex['description']}
+        {'exercise': ex['exercise'], 'description': ex['description'], 'body_part': body_part, 'severity': severity}
         for ex in exercises
     ]
     
