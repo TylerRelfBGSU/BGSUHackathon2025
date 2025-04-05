@@ -1,19 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Injury-Specific Exercise Guide</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Injury-Specific Exercise Guide</h1>
-    <ul>
-        {% for body_part, severity, exercise, description in exercises %}
-        <li>
-            <strong>{{ body_part }}</strong> — <em>{{ severity }}</em><br>
-            Exercise: <strong>{{ exercise }}</strong><br>
-            Description: {{ description }}
-        </li>
-        <br>
-        {% endfor %}
+
+    <form id="filterForm">
+        <label for="body_part">Body Part:</label>
+        <select id="body_part" name="body_part">
+            <option value="">--Select Body Part--</option>
+            {% for part in body_parts %}
+                <option value="{{ part }}">{{ part }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="severity">Severity:</label>
+        <select id="severity" name="severity">
+            <option value="">--Select Severity--</option>
+            {% for severity in severities %}
+                <option value="{{ severity }}">{{ severity }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <h2>Exercises:</h2>
+    <ul id="exercisesList">
+        <!-- Exercises will be dynamically populated here -->
     </ul>
+
+    <script>
+        $(document).ready(function() {
+            // Event listener for when the user changes the dropdowns
+            $('#filterForm select').change(function() {
+                const bodyPart = $('#body_part').val();
+                const severity = $('#severity').val();
+
+                // Send the AJAX request to get the exercises
+                $.post('/get_exercises', { body_part: bodyPart, severity: severity }, function(data) {
+                    // Clear the list first
+                    $('#exercisesList').empty();
+
+                    // If we get exercises back, display them
+                    if (data.length > 0) {
+                        data.forEach(function(exercise) {
+                            $('#exercisesList').append(
+                                `<li><strong>${exercise.exercise}</strong> (Body Part: ${exercise.body_part}, Severity: ${exercise.severity})<br>${exercise.description}</li>`
+                            );
+                        });
+                    } else {
+                        $('#exercisesList').append('<li>No exercises found for the selected options.</li>');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
