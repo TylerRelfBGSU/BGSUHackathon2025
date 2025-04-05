@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Injury-Specific Exercise Guide</title>
+</head>
+<body>
+    <h1>Injury-Specific Exercise Guide</h1>
+    <ul>
+        {% for body_part, severity, exercise, description in exercises %}
+        <li>
+            <strong>{{ body_part }}</strong> — <em>{{ severity }}</em><br>
+            Exercise: <strong>{{ exercise }}</strong><br>
+            Description: {{ description }}
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+</body>
+</html>
