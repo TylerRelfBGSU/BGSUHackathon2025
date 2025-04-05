@@ -1,0 +1,84 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f8f9fa;
+	color: #333;
+}
+
+.container {
+	max-width: 800px;
+	margin: 40px auto;
+	padding: 20px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+h1, h2 {
+	text-align: center;
+	color: #0056b3;
+}
+
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	gap: 20px;
+}
+
+label {
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+select, input[type="range"] {
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 16px;
+}
+
+.slider-container {
+	display: flex;
+	align-items: center;
+}
+
+#severity-label {
+    margin-left: 12px;
+    font-weight: 600;
+    color: #555;
+    width: 130px; /* Prevent layout shift */
+    display: inline-block;
+}
+
+ul#exercisesList {
+	list-style-type: none;
+	padding: 0;
+}
+
+ul#exercisesList li {
+	background: #f1f3f5;
+	border-left: 4px solid #007bff;
+	margin-bottom: 15px;
+	padding: 12px 15px;
+	border-radius: 6px;
+}
+
+ul#exercisesList li strong {
+	font-size: 1.1em;
+	color: #007bff;
+}
+
+@media (max-width: 600px) {
+	.form-row {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.slider-container {
+		width: 100%;
+	}
+}

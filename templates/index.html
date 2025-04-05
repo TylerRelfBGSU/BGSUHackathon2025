@@ -5,82 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Injury-Specific Exercise Guide</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        /* Flexbox container to align the dropdowns and slider in one row */
-        .form-row {
-            display: flex;
-            align-items: center; /* Vertically align the items */
-            gap: 20px; /* Add some space between the dropdown and slider */
-            margin-bottom: 20px;
-        }
-        
-        .slider-container {
-            display: flex;
-            align-items: center;
-        }
-
-        #severity-label {
-            margin-left: 10px;
-            font-weight: bold;
-        }
-
-        select, input[type="range"] {
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Injury-Specific Exercise Guide</h1>
+    <div class="container">
+        <h1>Injury-Specific Exercise Guide</h1>
 
-    <!-- Use a flex container to align the form elements side by side -->
-    <form id="filterForm">
-        <div class="form-row">
-            <label for="body_part">Body Part:</label>
-            <select id="body_part" name="body_part">
-                <option value="">--Select Body Part--</option>
-                {% for part in body_parts %}
-                    <option value="{{ part }}">{{ part }}</option>
-                {% endfor %}
-            </select>
+        <form id="filterForm">
+            <div class="form-row">
+                <label for="body_part">Body Part:</label>
+                <select id="body_part" name="body_part">
+                    <option value="">--Select Body Part--</option>
+                    {% for part in body_parts %}
+                        <option value="{{ part }}">{{ part }}</option>
+                    {% endfor %}
+                </select>
 
-            <!-- Slider for severity aligned next to Body Part -->
-            <div class="slider-container">
-                <label for="severity">Severity:</label>
-                <input type="range" id="severity" name="severity" min="1" max="3" value="1">
-                <span id="severity-label">Mild Pain</span>
+                <div class="slider-container">
+                    <label for="severity">Severity:</label>
+                    <input type="range" id="severity" name="severity" min="1" max="3" value="1">
+                    <span id="severity-label">Mild Pain</span>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <h2>Exercises:</h2>
-    <ul id="exercisesList">
-        <!-- Exercises will be dynamically populated here -->
-    </ul>
+        <h2>Exercises:</h2>
+        <ul id="exercisesList">
+            <!-- Exercises will be dynamically populated here -->
+        </ul>
+    </div>
 
     <script>
         $(document).ready(function() {
-            // Update severity label based on the slider value
+            const labels = ['Mild Pain', 'Moderate Injury', 'Major Injury'];
+
             $('#severity').on('input', function() {
                 const severity = $(this).val();
-                const labels = ['Mild Pain', 'Moderate Injury', 'Major Injury'];
                 $('#severity-label').text(labels[severity - 1]);
             });
 
-            // Event listener for when the user changes the dropdowns or slider
             $('#filterForm select, #severity').change(function() {
                 const bodyPart = $('#body_part').val();
                 const severity = $('#severity').val();
 
-                // Send the AJAX request to get the exercises
                 $.post('/get_exercises', { body_part: bodyPart, severity: severity }, function(data) {
-                    // Clear the list first
                     $('#exercisesList').empty();
 
-                    // If we get exercises back, display them
                     if (data.length > 0) {
                         data.forEach(function(exercise) {
                             $('#exercisesList').append(
-                                `<li><strong>${exercise.exercise}</strong> (Body Part: ${exercise.body_part}, Severity: ${exercise.severity})<br>${exercise.description}</li>`
+                                `<li>
+                                    <strong>${exercise.exercise}</strong><br>
+                                    <small><em>(${exercise.body_part} - ${exercise.severity})</em></small><br>
+                                    ${exercise.description}
+                                </li>`
                             );
                         });
                     } else {
