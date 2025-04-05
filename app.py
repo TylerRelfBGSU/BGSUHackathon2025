@@ -3,6 +3,13 @@ import sqlite3
 
 app = Flask(__name__)
 
+# Map integer severity to string
+severity_map = {
+    '1': 'Mild Pain',
+    '2': 'Moderate Injury',
+    '3': 'Major Injury'
+}
+
 def get_exercises(body_part=None, severity=None):
     conn = sqlite3.connect('health.db')
     cursor = conn.cursor()
@@ -19,7 +26,7 @@ def get_exercises(body_part=None, severity=None):
         params.append(body_part)
     if severity:
         params.append(severity)
-    
+
     cursor.execute(query, tuple(params))
     rows = cursor.fetchall()
     conn.close()
@@ -35,11 +42,11 @@ def index():
 @app.route('/get_exercises', methods=['POST'])
 def get_exercises_ajax():
     body_part = request.form.get('body_part')
-    severity = request.form.get('severity')
-    
+    severity_int = request.form.get('severity')
+    severity = severity_map.get(severity_int)
+
     exercises = get_exercises(body_part, severity)
 
-    # Convert the exercises to a list of dictionaries for JSON
     exercises_data = [
         {'body_part': row[0], 'severity': row[1], 'exercise': row[2], 'description': row[3]}
         for row in exercises
