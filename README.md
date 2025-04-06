@@ -1,4 +1,3 @@
 - Team Name: Stay Fit 
-    - (team name is subject to change)
 - Track: Health & Wellness
 - Team Members: Tyler Relf, Abigail Moore, Cameron Kulesza, Devin Holmes
