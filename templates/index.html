@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stay Fit</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="/static/scripts.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -92,84 +93,5 @@
             <!-- Exercises will be dynamically populated here -->
         </ul>
     </div>
-
-	<script>
-		$(document).ready(function () {
-			const severityLabels = ['Mild Pain', 'Moderate Injury', 'Major Injury'];
-
-			$('#severity').on('input', function () {
-				const severity = $(this).val();
-				$('#severity-label').text(severityLabels[severity - 1]);
-			});
-
-			$('#filterForm select, #severity').change(function () {
-				const bodyPart = $('#body_part').val();
-				const severity = $('#severity').val();
-
-				$.post('/get_exercises', { body_part: bodyPart, severity: severity }, function (data) {
-					$('#exercisesList').empty();
-
-					if (data.length > 0) {
-						data.forEach(function (exercise) {
-							$('#exercisesList').append(
-								`<li>
-									<strong>${exercise.exercise}</strong><br>
-									<small><em>(${exercise.body_part} - ${exercise.severity})</em></small><br>
-									${exercise.description}
-								</li>`
-							);
-						});
-					} else {
-						$('#exercisesList').append('<li>No exercises found for the selected options.</li>');
-					}
-				});
-			});
-
-			// Message system logic
-			$('#msg_severity').on('input', function () {
-				$('#msg-severity-label').text(severityLabels[this.value - 1]);
-				fetchMessages();
-			});
-
-			$('#msg_body_part').change(fetchMessages);
-
-			function fetchMessages() {
-				const part = $('#msg_body_part').val();
-				const severity = $('#msg_severity').val();
-
-				if (!part) {
-					$('#messagesList').html('<li>Please select a body part.</li>');
-					return;
-				}
-
-				$.post('/get_messages', { body_part: part, severity: severity }, function (messages) {
-					$('#messagesList').empty();
-					if (messages.length > 0) {
-						messages.forEach(msg => {
-							$('#messagesList').append(`<li>${msg}</li>`);
-						});
-					} else {
-						$('#messagesList').append('<li>No messages yet. Be the first to share something!</li>');
-					}
-				});
-			}
-
-			$('#messageForm').submit(function (e) {
-				e.preventDefault();
-				const bodyPart = $('#msg_body_part').val();
-				const severity = $('#msg_severity').val();
-				const message = $('#messageText').val();
-
-				$.post('/submit_message', {
-					body_part: bodyPart,
-					severity: severity,
-					message: message
-				}, function () {
-					$('#messageText').val('');
-					fetchMessages();
-				});
-			});
-		});
-	</script>
 </body>
 </html>
