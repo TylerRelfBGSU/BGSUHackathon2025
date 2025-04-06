@@ -346,3 +346,18 @@ body {
     box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Blue glow */
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Slight downward movement at the start /
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); / Original position /
+    }
+}
+
+/ Apply the fade-in animation to .container and .message-section /
+.container, .message-section {
+    animation: fadeIn 1.2s ease-out forwards; / 1.2s duration and ease-out for smooth animation */
+}
