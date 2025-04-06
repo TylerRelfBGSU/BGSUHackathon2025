@@ -1,15 +1,53 @@
-// static/main.js
-
 $(document).ready(function () {
-	// Update severity label
+	// Initially hide the sections until a body part is selected
+	$('#messageResults').hide();
+	$('.container h2').hide();
+	$('#exercisesList').empty();
+	$('#messagesList').empty();
+
+	// Update severity label for exercises
 	$('#severity').on('input', function () {
 		const severityMap = { 1: 'Mild Pain', 2: 'Moderate Injury', 3: 'Major Injury' };
 		$('#severity-label').text(severityMap[this.value]);
 		loadExercises();
 	});
 
-	$('#body_part').on('change', loadExercises);
+	// Update severity label for messages
+	$('#msg_severity').on('input', function () {
+		const severityMap = { 1: 'Mild Pain', 2: 'Moderate Injury', 3: 'Major Injury' };
+		$('#msg-severity-label').text(severityMap[this.value]);
+		loadMessages();
+	});
 
+	// Handle changes in body part selection for exercises
+	$('#body_part').on('change', function () {
+		const bodyPart = $(this).val();
+		if (bodyPart) {
+			$('#messageResults').show();
+			$('.container h2').show();
+			loadExercises(); // Load exercises when a body part is selected
+		} else {
+			// Clear the exercises section when no body part is selected
+			$('#exercisesList').empty();
+			$('.container h2').hide();
+		}
+		loadMessages(); // Load messages when a body part is selected
+	});
+
+	// Handle changes in body part selection for messages
+	$('#msg_body_part').on('change', function () {
+		const bodyPart = $(this).val();
+		if (bodyPart) {
+			$('#messageResults').show();
+			loadMessages(); // Load messages when a body part is selected
+		} else {
+			// Clear the messages section when no body part is selected
+			$('#messagesList').empty();
+			$('#messageResults').hide();
+		}
+	});
+
+	// Load exercises based on the selected body part and severity
 	function loadExercises() {
 		const bodyPart = $('#body_part').val();
 		const severity = $('#severity').val();
@@ -29,15 +67,7 @@ $(document).ready(function () {
 		}
 	}
 
-	// Severity label for messages
-	$('#msg_severity').on('input', function () {
-		const severityMap = { 1: 'Mild Pain', 2: 'Moderate Injury', 3: 'Major Injury' };
-		$('#msg-severity-label').text(severityMap[this.value]);
-		loadMessages();
-	});
-
-	$('#msg_body_part').on('change', loadMessages);
-
+	// Load messages based on the selected body part and severity
 	function loadMessages() {
 		const bodyPart = $('#msg_body_part').val();
 		const severity = $('#msg_severity').val();
@@ -55,6 +85,7 @@ $(document).ready(function () {
 		}
 	}
 
+	// Submit new message
 	$('#messageForm').on('submit', function (e) {
 		e.preventDefault();
 		const data = {
