@@ -111,6 +111,10 @@ def get_messages():
     messages_data = ref.get()
     messages = list(messages_data.values()) if messages_data else []
     return jsonify(messages)
+    
+@app.route('/login')
+def login():
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

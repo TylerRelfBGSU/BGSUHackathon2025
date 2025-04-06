@@ -42,7 +42,7 @@ body {
 }
 
 .top-bar {
-    background-color: #0056b3; /* Dark blue for a strong, clean look */
+    background-color: #0056b3; /* Dark blue background for a professional look */
     padding: 10px 20px;
     color: #fff;
     position: fixed;
@@ -56,21 +56,45 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.5em;
+    font-size: 1.6rem;
     font-weight: bold;
+    color: #fff;
+}
+
+.login-button a {
+    background-color: #80ce1d; /* Green color for the button */
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.login-button a:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+body {
+    padding-top: 50px; /* Adjust this based on your top bar height */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .back-to-home {
     color: white;
     background-color: #80ce1d;
-    padding: 10px 20px;
+    padding: 5px 15px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 1em;
-    margin-right: 30px;
+	font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
 .back-to-home:hover {

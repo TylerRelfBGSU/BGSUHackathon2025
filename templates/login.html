@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="valid.js" defer></script> 
-    <link rel="stylesheet" href="logstyle.css">
+    <script src="/static/valid.js" defer></script> 
+    <link rel="stylesheet" href="/static/logstyle.css">
 </head>
 <body>
     <div class="top-bar">
         <div class="top-bar-container">
             <div class="logo">Stay Fit</div>
-            <a href="index.html" class="back-to-home">Back to Home</a>
+            <a href="{{ url_for('index') }}"  class="back-to-home">Back to Home</a>
         </div>
     </div>
 
     <div class="container">
         <!-- Left Side Image Panel -->
         <div class="image-panel">
-            <img src="mountain_image.webp" alt="Welcome image">
+            <img src="/static/mountain_image.webp" alt="Welcome image">
         </div>
 
         <!-- Right Side Login Form -->
