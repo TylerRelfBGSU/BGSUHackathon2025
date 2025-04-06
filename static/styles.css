@@ -347,17 +347,24 @@ body {
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px); /* Slight downward movement at the start /
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); / Original position /
-    }
+0% {
+	opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-/ Apply the fade-in animation to .container and .message-section /
 .container, .message-section {
-    animation: fadeIn 1.2s ease-out forwards; / 1.2s duration and ease-out for smooth animation */
+	animation: fadeIn 4s ease-out forwards;
+}
+
+.container, .hero-overlay {
+	animation: fadeIn 2s ease-out forwards;
+}
+
+.info-container, .info-image {
+	animation: fadeIn 2s ease-out forwards;
 }
