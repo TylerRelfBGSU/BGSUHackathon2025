@@ -116,6 +116,10 @@ def get_messages():
 def login():
     return render_template('login.html')
 
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 @app.route('/main', methods=['POST'])
 def main():
     # You can add login authentication logic here if needed
