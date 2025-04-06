@@ -64,5 +64,6 @@ $(document).ready(function() {
         }
 
         alert('Form submitted successfully!');
+        window.location.href = "/main-page";
     });
 });

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/static/valid.js" defer></script> 
+    <script src="{{ url_for('static', filename='valid.js') }}" defer></script>
     <link rel="stylesheet" href="/static/logstyle.css">
 </head>
 <body>
@@ -25,17 +25,15 @@
         <!-- Right Side Login Form -->
         <div class="form-panel">
             <header><h1>Log In</h1></header>
-            <form id="registrationForm">
+            <form action="{{ url_for('main') }}" id="registrationForm" method="POST">
                 <label for="email">Email:</label>
-                <input type="text" id="username" name="username" required><br>
-
+                <input type="text" id="email" name="email" required><br>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br>
-
-                <div id="figure">
-                    <input type="submit" value="Login">
-                </div>
-            </form>
+    <div id="figure">
+        <input type="submit" value="Login">
+    </div>
+</form>
             <div id="errorMessages" style="color:red;"></div>
             <div class="signup-link">
                 <a href="signup.html">Sign Up</a>

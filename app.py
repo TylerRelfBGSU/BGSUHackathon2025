@@ -1,6 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, db
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from dotenv import load_dotenv
 import os
 
@@ -115,6 +115,15 @@ def get_messages():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/main', methods=['POST'])
+def main():
+    # You can add login authentication logic here if needed
+    return redirect(url_for('main_page'))
+
+@app.route('/main-page')
+def main_page():
+    return render_template('main.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

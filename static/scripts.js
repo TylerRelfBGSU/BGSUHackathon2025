@@ -82,7 +82,6 @@ $(document).ready(function () {
 			});
 		}
 	}
-
 	// Submit new message
 	$('#messageForm').on('submit', function (e) {
 		e.preventDefault();
