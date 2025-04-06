@@ -280,3 +280,58 @@ h2 {
 body {
     padding-top: 50px; /* Adjust this based on your top bar height */
 }
+
+.message-section {
+    background-color: #e3f3ee;
+    padding: 40px 30px;
+    margin: 40px auto;
+    border-radius: 12px;
+    max-width: 850px;
+}
+
+.message-section h2, .message-section h3 {
+    text-align: center;
+    color: #00584c;
+}
+
+#messageForm textarea {
+    width: 97%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    font-size: 1rem;
+}
+
+#messageForm .btn {
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#messagesList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#messagesList li {
+    background-color: #f1f3f5;
+    margin-bottom: 12px;
+    padding: 10px 15px;
+    border-left: 4px solid #00584c;
+    border-radius: 6px;
+}
+
+#msg-severity-label {
+    margin-left: 12px;
+    font-weight: 600;
+    color: #555;
+    width: 130px; /* Match #severity-label to prevent layout shift */
+    display: inline-block;
+}

@@ -24,13 +24,16 @@ def get_body_parts():
     ref = db.reference('')
     exercises_data = ref.get()  # Get all the exercises from the Firebase Realtime Database
     print("Fetched exercises data:", exercises_data)  # Log the fetched data
-    
+
     if exercises_data is None:
         print("No data found at the root of the database.")
-    else:
-        print("Fetched body parts:", list(exercises_data.keys()))  # Log available body parts
-    
-    return list(exercises_data.keys()) if exercises_data else []
+        return []
+
+    # Exclude "messages" key from the list of body parts
+    body_parts = [key for key in exercises_data.keys() if key.lower() != 'messages']
+    print("Filtered body parts:", body_parts)  # Log filtered body parts
+
+    return body_parts
 
 # Function to fetch exercises based on body part and severity
 def get_exercises(body_part=None, severity=None):
@@ -86,6 +89,28 @@ def get_exercises_ajax():
     ]
     
     return jsonify(exercises_data)
+    
+@app.route('/submit_message', methods=['POST'])
+def submit_message():
+    body_part = request.form['body_part']
+    severity_map = {'1': 'Mild Pain', '2': 'Moderate Injury', '3': 'Major Injury'}
+    severity = severity_map.get(request.form['severity'])
+    message = request.form['message']
+
+    ref = db.reference(f"messages/{body_part}/{severity}")
+    ref.push(message)
+    return '', 204
+
+@app.route('/get_messages', methods=['POST'])
+def get_messages():
+    body_part = request.form['body_part']
+    severity_map = {'1': 'Mild Pain', '2': 'Moderate Injury', '3': 'Major Injury'}
+    severity = severity_map.get(request.form['severity'])
+
+    ref = db.reference(f"messages/{body_part}/{severity}")
+    messages_data = ref.get()
+    messages = list(messages_data.values()) if messages_data else []
+    return jsonify(messages)
 
 if __name__ == '__main__':
     app.run(debug=True)
