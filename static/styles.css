@@ -368,3 +368,7 @@ body {
 .info-container, .info-image {
 	animation: fadeIn 2s ease-out forwards;
 }
+
+.grid {
+	animation: fadeIn 2s ease-out forwards;
+}
