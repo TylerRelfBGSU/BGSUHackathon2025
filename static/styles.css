@@ -82,3 +82,38 @@ ul#exercisesList li strong {
 		width: 100%;
 	}
 }
+
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.5); /* darkens image for readability */
+    color: #fff;
+    padding: 40px;
+    text-align: left; /* Align text to the left */
+    border-radius: 20px; /* More rounded edges */
+    max-width: 500px; /* Prevent overly wide box */
+    margin-right: 600px; /* Push the box to the left side */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+}
+
+.hero-title {
+	font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+	color: #c1ff72;
+    margin: 0;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 300;
+}
