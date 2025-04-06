@@ -23,27 +23,25 @@ $(document).ready(function () {
 	$('#body_part').on('change', function () {
 		const bodyPart = $(this).val();
 		if (bodyPart) {
-			$('#messageResults').show();
-			$('.container h2').show();
+			$('.container h2').show(); // Show "Recommended Exercises"
 			loadExercises(); // Load exercises when a body part is selected
 		} else {
 			// Clear the exercises section when no body part is selected
 			$('#exercisesList').empty();
-			$('.container h2').hide();
+			$('.container h2').hide(); // Hide "Recommended Exercises" heading
 		}
-		loadMessages(); // Load messages when a body part is selected
 	});
 
 	// Handle changes in body part selection for messages
 	$('#msg_body_part').on('change', function () {
 		const bodyPart = $(this).val();
 		if (bodyPart) {
-			$('#messageResults').show();
+			$('#messageResults').show(); // Show "Messages" section when a body part is selected
 			loadMessages(); // Load messages when a body part is selected
 		} else {
 			// Clear the messages section when no body part is selected
 			$('#messagesList').empty();
-			$('#messageResults').hide();
+			$('#messageResults').hide(); // Hide "Messages" section when no body part is selected
 		}
 	});
 
