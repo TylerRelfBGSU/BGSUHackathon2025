@@ -8,30 +8,6 @@
 	<script src="/static/scripts.js"></script>
     <link rel="stylesheet" href="/static/styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-	<style>
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container, .message-section {
-            animation: fadeIn 1.2s ease-out forwards;
-        }
-		
-		.container, .hero-overlay {
-            animation: fadeIn 2s ease-out forwards;
-        }
-		
-		.info-container, .info-image {
-            animation: fadeIn 2s ease-out forwards;
-        }
-    </style>
 </head>
 <body>
 	<div class="top-bar">
@@ -62,7 +38,7 @@
 		</div>
 	</div>
 
-    <div class="container">
+    <div class="container" id="exercise-guide">
         <h1>Injury-Specific Exercise Guide</h1>
 
         <form id="filterForm">
@@ -89,7 +65,7 @@
         </ul>
     </div>
 	
-	<div class="message-section">
+	<div class="message-section" id="user-tips">
     <h1>User Experiences & Tips</h1>
 		<form id="messageForm">
 			<div class="form-row">
