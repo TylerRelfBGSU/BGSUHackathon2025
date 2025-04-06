@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="valid.js" defer></script> 
+    <link rel="stylesheet" href="logstyle.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="logo">Stay Fit</div>
+            <a href="index.html" class="back-to-home">Back to Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Left Side Image Panel -->
+        <div class="image-panel">
+            <img src="mountain_image.webp" alt="Welcome image">
+        </div>
+
+        <!-- Right Side Login Form -->
+        <div class="form-panel">
+            <header><h1>Log In</h1></header>
+            <form id="registrationForm">
+                <label for="email">Email:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <div id="figure">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <div id="errorMessages" style="color:red;"></div>
+            <div class="signup-link">
+                <a href="signup.html">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
